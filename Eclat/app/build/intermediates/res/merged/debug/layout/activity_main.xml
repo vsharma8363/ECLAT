@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bgColor"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -54,4 +54,4 @@
 
 
 
-<!-- From: file:/C:/Users/viksurf/Documents/GitHub/Eclat/Eclat/app/src/main/res/layout/activity_main.xml -->
+<!-- From: file:/Users/ethanyim1998/Desktop/Eclat/app/src/main/res/layout/activity_main.xml -->

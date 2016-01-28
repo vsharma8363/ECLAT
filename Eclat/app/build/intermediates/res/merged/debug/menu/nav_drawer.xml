@@ -4,4 +4,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
-<!-- From: file:/C:/Users/viksurf/Documents/GitHub/Eclat/Eclat/app/src/main/res/menu/nav_drawer.xml -->
+<!-- From: file:/Users/ethanyim1998/Desktop/Eclat/app/src/main/res/menu/nav_drawer.xml -->
