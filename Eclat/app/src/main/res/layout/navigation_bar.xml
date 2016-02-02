@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/bgColor"
+    android:layout_height="match_parent"
+    tools:context="greycubelabs.tutor.instatutors.NavigationDrawer">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:id="@+id/NavigationBarWhiteBar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/green"
+        android:id="@+id/NavigationBarHeader"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@id/NavigationBarWhiteBar"
+        android:layout_alignRight="@+id/NavigationBarWhiteBar"
+        android:layout_alignEnd="@+id/NavigationBarWhiteBar">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Name"
+            android:id="@+id/NameDisplay"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Email"
+            android:id="@+id/EmailDisplay"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/NavigationHomeSelection"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@id/NavigationBarHeader"
+        android:layout_marginTop="30dp"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:onClick="goHome"
+        android:layout_alignRight="@+id/NavigationBarWhiteBar"
+        android:layout_alignEnd="@+id/NavigationBarWhiteBar">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/HomeIcon"
+            android:src="@drawable/ic_menu_home"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:text="Home"
+            android:id="@+id/HomeText"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/NavigationSearchTutorSelection"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@id/NavigationHomeSelection"
+        android:layout_marginTop="30dp"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:onClick="goSettings"
+        android:layout_alignRight="@+id/NavigationBarWhiteBar"
+        android:layout_alignEnd="@+id/NavigationBarWhiteBar">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_menu_settings"
+            android:id="@+id/SettingsIcon"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:text="Settings"
+            android:id="@+id/SearchText"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/NavigationSettingsSelection"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@id/NavigationSearchTutorSelection"
+        android:layout_marginTop="30dp"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:onClick="goProfile"
+        android:layout_alignRight="@+id/NavigationBarWhiteBar"
+        android:layout_alignEnd="@+id/NavigationBarWhiteBar">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/ProfileIcon"
+            android:src="@drawable/ic_menu_profile"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:text="Camera"
+            android:id="@+id/profile"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_weight="40"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#808080"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/NavigationBarWhiteBar"
+        android:gravity="center_vertical"
+        android:layout_marginTop="30dp"
+        android:id="@+id/NavigationBarDivider"
+        android:layout_below="@id/NavigationSettingsSelection"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/NavigationHelpSelection"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@id/NavigationBarDivider"
+        android:layout_marginTop="30dp"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:onClick="goHelp"
+        android:layout_alignRight="@+id/NavigationBarWhiteBar"
+        android:layout_alignEnd="@+id/NavigationBarWhiteBar">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/HelpIcon"
+            android:src="@drawable/ic_menu_help"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:text="Help"
+            android:id="@+id/HelpText"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageButton"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icon"
+        android:scaleType="centerInside"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@+id/NavigationBarHeader"
+        android:layout_alignEnd="@+id/NavigationBarWhiteBar"
+        android:layout_marginEnd="242dp"
+        android:layout_marginBottom="65dp" />
+
+</RelativeLayout>
