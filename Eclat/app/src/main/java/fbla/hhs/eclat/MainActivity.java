@@ -1,19 +1,27 @@
 package fbla.hhs.eclat;
 
+import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.pushbots.push.Pushbots;
@@ -31,7 +39,10 @@ public class MainActivity extends AppCompatActivity implements FlingCardListener
     public static ViewHolder viewHolder;
     private ArrayList<Data> al;
     private SwipeFlingAdapterView flingContainer;
-
+    Button Message;
+    LinearLayout Linear;
+    Toolbar tb;
+   // final String m_Text;
     public static void removeBackground() {
 
 
@@ -40,11 +51,30 @@ public class MainActivity extends AppCompatActivity implements FlingCardListener
 
     }
 
+    /**
+     *
+     <Button
+     android:layout_width="36dp"
+     android:layout_height="20dp"
+     android:background="@drawable/ic_drawer"
+     android:id="@+id/startDrawer"
+     android:onClick="startDrawer"
+     android:layout_marginTop="10dp"
+     android:layout_marginLeft="10dp"
+     android:layout_gravity="left|top" />
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //firebase
+        Message = (Button) findViewById(R.id.SendMessage);
+        Linear = (LinearLayout) findViewById(R.id.LinearLayoutmain);
+        tb = (Toolbar) findViewById(R.id.toolbar);
+        Linear.setVisibility(View.INVISIBLE);
+        tb.setTitle("Home");
+        setSupportActionBar(tb);
 
 
 
@@ -66,16 +96,25 @@ public class MainActivity extends AppCompatActivity implements FlingCardListener
 
             }
 
-            @Override
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+            public void RemoveACard()
+            {
+                al.remove(0);
+            }
+//----------------------------
+// ---------------------------------------------------------------------------------------------------------------------
             //If the the card is swiped left
             public void onLeftCardExit(Object dataObject) {
 
                 Data x = al.get(0);
+
                 String UserID = x.getUSERID();
 
                 al.remove(0);
+
+                if(al.size() == 0){
+                    Linear.setVisibility(View.VISIBLE);
+                }
 
                 myAppAdapter.notifyDataSetChanged();
                 //Do something on the left!
@@ -95,6 +134,13 @@ public class MainActivity extends AppCompatActivity implements FlingCardListener
                 String UserID = x.getUSERID();
 
                 al.remove(0);
+
+
+                if(al.size() == 0){
+                    Linear.setVisibility(View.VISIBLE);
+                }
+
+
                 myAppAdapter.notifyDataSetChanged();
 
 
@@ -128,15 +174,12 @@ public class MainActivity extends AppCompatActivity implements FlingCardListener
         });
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-     /**   //If the Skip Button Command is clicked
-        blo.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                al.remove(0);
-            }
-        });
+       //If the Skip Button Command is clicked
+
 
          //-------------------------------------------------------------------------------------------------------------------------------------------------
-         //If the Message Button Command is clicked
+
+     /**    //If the Message Button Command is clicked
          Message.setOnClickListener(new View.OnClickListener() {
          public void onClick(View v) {
 
@@ -148,10 +191,47 @@ public class MainActivity extends AppCompatActivity implements FlingCardListener
          **/
 
     }
+
+
+    public void SendAUser(View v) {
+       // m_Text = new String();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Send a Message to a User!");
+
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               // m_Text = input.getText().toString();
+                Toast.makeText(getApplicationContext(), "Your message has been sent!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+                  //DO SOME CODE STUFF TO SEND MESSAGE__________________________________________
+
+    }
+
+
+
+
     //-------------------------------------------------------------------------------------------------------------------------------------------------
     //StartActivityDrawer
-    public void startDrawer(View view){
-        Intent i = new Intent(this, NavDrawer.class);
+    public void startnavDrawer(View v){
+        Intent i = new Intent(getApplicationContext(), NavDrawer.class);
         startActivity(i);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
     }
@@ -213,6 +293,8 @@ public class MainActivity extends AppCompatActivity implements FlingCardListener
                 viewHolder.background = (FrameLayout) rowView.findViewById(R.id.background);
                 viewHolder.cardImage = (ImageView) rowView.findViewById(R.id.cardImage);
                 rowView.setTag(viewHolder);
+
+
 
 
 

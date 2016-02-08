@@ -161,7 +161,7 @@ public class ImagePreview extends Fragment implements View.OnClickListener{
 
         try {
             con = new FTPClient();
-            con.connect("ftp://www.xprecif.com/");
+            con.connect("69.5.22.72", 21);
 
             if (con.login("xxprecif-viks", "viks6viks")) {
                 con.enterLocalPassiveMode(); // important!

@@ -25,14 +25,13 @@ public class Signup extends AppCompatActivity {
     EditText ConfirmPassword;
     EditText Email;
     Firebase myFirebaseRef;
-    TextView warning;
     EditText FullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        myFirebaseRef = new Firebase("https://eclat.firebaseio.com/");
+        myFirebaseRef = DataStorage.getRef();
         setContentView(R.layout.activity_signup);
         Password = (EditText) findViewById(R.id.SignUpPasswordInput);
         ConfirmPassword = (EditText) findViewById(R.id.SignUpPasswordConfirm);
@@ -46,11 +45,6 @@ public class Signup extends AppCompatActivity {
 
                         MakeAUser();
 
-                        Toast.makeText(Signup.this, "You will be redirected to the login page",
-                                Toast.LENGTH_SHORT).show();
-
-                        Intent i = new Intent(this, Login.class);
-                        startActivity(i);
 
                     } else {
 
@@ -71,6 +65,8 @@ public class Signup extends AppCompatActivity {
     public void HaveAnAccount(View view) {
                     Intent i = new Intent(this, Login.class);
                     startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+
     }
 
 
@@ -96,6 +92,9 @@ public class Signup extends AppCompatActivity {
                                                 Toast.makeText(Signup.this, "Success, your account was made!",
                                                         Toast.LENGTH_SHORT).show();
 
+
+                                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                                startActivity(i);
                                             }
 
                                             @Override

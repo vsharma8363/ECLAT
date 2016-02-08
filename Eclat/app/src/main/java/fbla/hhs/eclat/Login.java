@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,14 +35,17 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        myFirebaseRef = new Firebase("https://eclat.firebaseio.com/");
+        myFirebaseRef = DataStorage.getRef();
         setContentView(R.layout.activity_login);
         Password = (EditText) findViewById(R.id.PasswordLogin);
         Email = (EditText) findViewById(R.id.EmailLogin);
         Login = new Intent(this, MainActivity.class);
+
+
     }
 
     public void SubmitLogin(View view) {
+
 
 
         myFirebaseRef.authWithPassword(Email.getText().toString(),
@@ -92,6 +96,7 @@ public class Login extends AppCompatActivity {
     public void NoAccount(View view){
         Intent i = new Intent(this, Signup.class);
         startActivity(i);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
     }
 
 public void ForgotAccount(View view){

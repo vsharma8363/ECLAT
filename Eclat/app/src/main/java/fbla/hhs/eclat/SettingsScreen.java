@@ -18,13 +18,19 @@ public class SettingsScreen extends AppCompatActivity {
 
     EditText Email;
     EditText FullName;
+    EditText Password;
+    Firebase myFirebaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myFirebaseRef = DataStorage.getRef();
         setContentView(R.layout.activity_settings_screen);
         Email = (EditText) findViewById(R.id.EmailSettings);
+        Password = (EditText) findViewById(R.id.PasswordSettings);
         FullName = (EditText) findViewById(R.id.FullNameSettings);
+        Email.setText(DataStorage.getEmail());
+        FullName.setText(DataStorage.getFullName());
     }
 
     public void startDrawer(View view) {
@@ -34,12 +40,38 @@ public class SettingsScreen extends AppCompatActivity {
     }
 
     public void SaveSettingsChanges(View view) {
-        DataStorage.setEmail(Email.getText().toString());
-        DataStorage.setFullName(FullName.getText().toString());
-        Toast.makeText(this, "All changes have been saved",
-                Toast.LENGTH_LONG).show();
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+      if(Password.getText().toString() != null) {
+          if (DataStorage.getEmail() != Email.getText().toString() || DataStorage.getFullName() != FullName.getText().toString()) {
+              DataStorage.setEmail(Email.getText().toString());
+              myFirebaseRef.changeEmail(DataStorage.getEmail(), Password.getText().toString(), Email.getText().toString(),
+                      new Firebase.ResultHandler() {
+                          @Override
+                          public void onSuccess() {
+                              DataStorage.setFullName(FullName.getText().toString());
+                              Toast.makeText(getApplicationContext(), "All changes have been saved",
+                                      Toast.LENGTH_LONG).show();
+                              Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                              startActivity(i);
+                          }
+
+                          @Override
+                          public void onError(FirebaseError firebaseError) {
+                              Toast.makeText(getApplicationContext(), "There was an error, please try again later",
+                                      Toast.LENGTH_LONG).show();
+                          }
+                      });
+          } else {
+              Toast.makeText(getApplicationContext(), "All changes have been saved",
+                      Toast.LENGTH_LONG).show();
+              Intent i = new Intent(getApplicationContext(), MainActivity.class);
+              startActivity(i);
+          }
+      }
+        else{
+          Toast.makeText(getApplicationContext(), "Please enter your password",
+                  Toast.LENGTH_LONG).show();
+      }
+
     }
 
     public void ChangePassword(View view) {

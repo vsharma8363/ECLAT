@@ -1,9 +1,13 @@
 package fbla.hhs.eclat;
 
+import com.firebase.client.Firebase;
+
 /**
  * Created by viksurf on 1/15/2016.
  */
 public class DataStorage {
+
+    private static Firebase ref;
 
     private static String fullName, email, UID, DataPath;
 
@@ -23,6 +27,12 @@ public class DataStorage {
     public static String getEmail(){
         return email;
     }
+    public static Firebase getRef(){
+        if(ref == null){
+            ref = new Firebase("https://eclat.firebaseio.com/");
+        }
+        return ref;
+    }
     public static String getDataPath(){
         return DataPath;
     }
@@ -32,7 +42,6 @@ public class DataStorage {
     public static String getUID(){
         return UID;
     }
-
     public static boolean hasUserData(){
         return fullName != null &&
                 email != null && !fullName.trim().equals("")
